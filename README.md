@@ -4,7 +4,7 @@
 
 ## 🚀 Inicio Rápido con Docker
 
-### ⚡ Configuración en 3 pasos
+### ⚡ Configuración en 6 pasos
 
 ```bash
 # 1. Clonar y navegar al proyecto
@@ -21,6 +21,10 @@ Ejecutar database-schema.sql y auth-database-setup.sql para la creacion de las b
 # 4. Adecuar el aarchivo env paara los datos de conexion y otros (Mail)
 # 5. Levantar toda la arquitectura
 docker-compose up -d --build
+
+# 6. Datos de prueba precargado
+{"username": "admin","password": "Admin123!"}  -- > Rol Admin
+{"username":"ana.garcia","password":"Admin123!"} -- > Rol Estudiante
 ```
 
 🌐 **APIs disponibles:**
