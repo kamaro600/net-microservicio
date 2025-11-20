@@ -9,7 +9,7 @@
 ```bash
 # 1. Clonar y navegar al proyecto
 git clone https://github.com/kamaro600/net-microservicio.git
-cd net-clean-arquitecture
+cd net-microservicio
 
 # 2. Configurar variables de entorno
 # Editar .env con tus configuraciones específicas
