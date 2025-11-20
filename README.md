@@ -14,7 +14,7 @@ cd net-microservicio
 # 2. Configurar variables de entorno
 # Editar .env con tus configuraciones específicas
 
-# 3. Se debe tener una base de datos en PostgreSQL
+# 3. Se debe tener una base de datos en PostgreSQL en docker
 
 Ejecutar database-schema.sql y auth-database-setup.sql para la creacion de las bases de datos y datos de ejemplo.
 
