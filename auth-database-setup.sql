@@ -1,8 +1,8 @@
--- Crear base de datos  
+-- 1.- Ejecutar primero creacion de base de datos  
  DROP DATABASE IF EXISTS university_auth;
 CREATE DATABASE university_auth;
 
-
+-- 2.- Una vez creado ejecutar esto dentro de la base de datos creada
 -- Crear schema si no existe
 CREATE SCHEMA IF NOT EXISTS public;
 
@@ -53,7 +53,7 @@ CREATE INDEX idx_user_roles_user ON user_roles(user_id);
 CREATE INDEX idx_user_roles_role ON user_roles(role_id);
 
 -- =============================================
--- INSERTAR DATOS INICIALES
+-- 3.- INSERTAR DATOS INICIALES
 -- =============================================
 
 -- Insertar roles por defecto
