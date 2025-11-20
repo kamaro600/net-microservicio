@@ -16,12 +16,12 @@ cd net-microservicio
 
 # 3. Se debe tener una base de datos en PostgreSQL en docker
 
-Ejecutar database-schema.sql y auth-database-setup.sql para la creacion de las bases de datos y datos de ejemplo.
+Ejecutar database-schema.sql y auth-database-setup.sql para la creacion de las bases de datos y datos de ejemplo. (Ejecutar parte por parte segun lo indicado en cada archivo)
 
 # 4. Adecuar el aarchivo env paara los datos de conexion y otros (Mail)
 # 5. Levantar toda la arquitectura
 docker-compose up -d --build
-
+NOTA: EL SERVICIO DE NOTIFICACION :5065 DEMORA EN LEVANTAR ESPERAR A QUE CARGUE EL SWAGGER
 # 6. Datos de prueba precargado
 {"username": "admin","password": "Admin123!"}  -- > Rol Admin
 {"username":"ana.garcia","password":"Admin123!"} -- > Rol Estudiante
