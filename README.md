@@ -4,25 +4,24 @@
 
 ## 🚀 Inicio Rápido con Docker
 
-### ⚡ Configuración en 6 pasos
+### ⚡ Configuración en 5 pasos
 
 ```bash
 # 1. Clonar y navegar al proyecto
 git clone https://github.com/kamaro600/net-microservicio.git
 cd net-microservicio
 
-# 2. Configurar variables de entorno
-# Editar .env con tus configuraciones específicas
+# 2. Se debe tener una base de datos en PostgreSQL en docker
+# En caso no tener ejecutar:
+docker run -d  --name postgres2 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=pass123456789 -p 5433:5432   postgres:15
 
-# 3. Se debe tener una base de datos en PostgreSQL en docker
+# Ejecutar database-schema.sql y auth-database-setup.sql para la creacion de las bases de datos y datos de ejemplo. (Ejecutar parte por parte segun lo indicado en cada archivo)
 
-Ejecutar database-schema.sql y auth-database-setup.sql para la creacion de las bases de datos y datos de ejemplo. (Ejecutar parte por parte segun lo indicado en cada archivo)
-
-# 4. Adecuar el aarchivo env paara los datos de conexion y otros (Mail)
-# 5. Levantar toda la arquitectura
+# 3. Adecuar el archivo .env para los datos de conexion y otros (BD, Mail)
+# 4. Levantar toda la arquitectura
 docker-compose up -d --build
-NOTA: EL SERVICIO DE NOTIFICACION :5065 DEMORA EN LEVANTAR ESPERAR A QUE CARGUE EL SWAGGER
-# 6. Datos de prueba precargado
+# NOTA: EL SERVICIO DE NOTIFICACION :5065 DEMORA EN LEVANTAR ESPERAR A QUE CARGUE EL SWAGGER
+# 5. Realizar las pruebas con datos de prueba precargado
 {"username": "admin","password": "Admin123!"}  -- > Rol Admin
 {"username":"ana.garcia","password":"Admin123!"} -- > Rol Estudiante
 ```
