@@ -1,8 +1,9 @@
--- Crear base de datos  
+--1.- Ejecutar primero creacion de base de datos  
  DROP DATABASE IF EXISTS UniversidadBD;
 CREATE DATABASE UniversidadBD;
 
 
+--2.- Una vez creado ejecutar esto dentro de la base de datos creada
 -- Crear schema si no existe
 CREATE SCHEMA IF NOT EXISTS public;
 -- =============================================
@@ -107,7 +108,36 @@ CREATE INDEX idx_profesor_carrera_profesor ON profesor_carrera(profesor_id);
 CREATE INDEX idx_profesor_carrera_carrera ON profesor_carrera(carrera_id);
 
 -- =============================================
--- DATOS DE EJEMPLO (OPCIONAL)
+-- TABLA DE AUDITORÍA PARA KAFKA
+-- =============================================
+
+-- Tabla: audit_logs (Para sistema de auditoría con Kafka)
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    event_type VARCHAR(50) NOT NULL,
+    entity_name VARCHAR(100) NOT NULL,
+    entity_id VARCHAR(50) NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    user_id VARCHAR(50) NOT NULL DEFAULT 'System',
+    user_name VARCHAR(100) NOT NULL DEFAULT 'System',
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    old_values TEXT,
+    new_values TEXT,
+    additional_data TEXT,
+    ip_address VARCHAR(45),
+    user_agent TEXT
+);
+
+-- Índices para optimizar consultas de auditoría
+CREATE INDEX idx_audit_logs_timestamp ON audit_logs (timestamp DESC);
+CREATE INDEX idx_audit_logs_event_type ON audit_logs (event_type);
+CREATE INDEX idx_audit_logs_entity ON audit_logs (entity_name, entity_id);
+CREATE INDEX idx_audit_logs_user ON audit_logs (user_id);
+CREATE INDEX idx_audit_logs_action ON audit_logs (action);
+
+
+-- =============================================
+-- 3.- DATOS DE EJEMPLO EJECUTAR AL FINAL
 -- =============================================
 
 -- Insertar facultades de ejemplo
@@ -149,30 +179,3 @@ INSERT INTO profesor_carrera (profesor_id, carrera_id) VALUES
 (2, 4),  -- Elena también enseña Física
 (3, 5);  -- Diego enseña Historia
 
--- =============================================
--- TABLA DE AUDITORÍA PARA KAFKA
--- =============================================
-
--- Tabla: audit_logs (Para sistema de auditoría con Kafka)
-CREATE TABLE IF NOT EXISTS audit_logs (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    event_type VARCHAR(50) NOT NULL,
-    entity_name VARCHAR(100) NOT NULL,
-    entity_id VARCHAR(50) NOT NULL,
-    action VARCHAR(50) NOT NULL,
-    user_id VARCHAR(50) NOT NULL DEFAULT 'System',
-    user_name VARCHAR(100) NOT NULL DEFAULT 'System',
-    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    old_values TEXT,
-    new_values TEXT,
-    additional_data TEXT,
-    ip_address VARCHAR(45),
-    user_agent TEXT
-);
-
--- Índices para optimizar consultas de auditoría
-CREATE INDEX idx_audit_logs_timestamp ON audit_logs (timestamp DESC);
-CREATE INDEX idx_audit_logs_event_type ON audit_logs (event_type);
-CREATE INDEX idx_audit_logs_entity ON audit_logs (entity_name, entity_id);
-CREATE INDEX idx_audit_logs_user ON audit_logs (user_id);
-CREATE INDEX idx_audit_logs_action ON audit_logs (action);
