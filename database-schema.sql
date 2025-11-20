@@ -1,6 +1,6 @@
 --1.- Ejecutar primero creacion de base de datos  
- DROP DATABASE IF EXISTS UniversidadBD;
-CREATE DATABASE UniversidadBD;
+DROP DATABASE IF EXISTS universidadbd;
+CREATE DATABASE universidadbd;
 
 
 --2.- Una vez creado ejecutar esto dentro de la base de datos creada
